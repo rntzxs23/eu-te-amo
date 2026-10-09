@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Meu Amor ❤️</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Dancing Script for the poem and Inter for standard text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Fundo em tom pastel rosa claro */
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Evita rolagem horizontal por causa dos corações */
+            min-height: 100vh;
+        }
+
+        .poem-font {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Animação dos corações caindo */
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            color: #ec4899; /* Rosa vibrante para os corações */
+            font-size: 1.5rem;
+            animation: fall linear forwards;
+            filter: drop-shadow(0 2px 4px rgba(236, 72, 153, 0.3));
+        }
+
+        /* Animação de pulso suave para o botão */
+        @keyframes soft-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+        }
+
+        .btn-pulse {
+            animation: soft-pulse 2s infinite;
+        }
+
+        /* Efeito de vidro para os containers */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased relative">
+
+    <!-- Container onde os corações serão gerados via JavaScript -->
+    <div id="heart-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <main class="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 py-10">
+        
+        <!-- Cartão principal que envolve todo o conteúdo -->
+        <div class="glass-card p-6 md:p-8 rounded-[2rem] shadow-2xl w-full max-w-md text-center">
+            
+            <!-- Título fofo (opcional, pode remover se quiser só o vídeo direto) -->
+            <h1 class="poem-font text-4xl md:text-5xl font-bold text-pink-600 mb-6 drop-shadow-sm">
+                Para o meu amor...
+            </h1>
+
+            <!-- Seção do Vídeo Quadrado -->
+            <div class="relative w-full aspect-square rounded-2xl overflow-hidden shadow-lg border-4 border-white mb-8 bg-pink-100 flex items-center justify-center">
+                <!-- 
+                  Nota: Altere 'seu-video.mp4' para o caminho real do seu vídeo ou URL.
+                  O vídeo está configurado para tocar sozinho (autoplay), sem som (muted) e em loop.
+                -->
+                <video src="video.mov" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover"></video>
+                
+                <!-- Mensagem de fallback caso o vídeo não carregue no editor -->
+                <p class="text-pink-400 text-sm italic relative z-[-1]">Seu vídeo maravilhoso aqui</p>
+            </div>
+
+            <!-- Seção do Spotify -->
+            <div class="mb-8 transform hover:scale-[1.02] transition-transform duration-300">
+                <iframe 
+                    style="border-radius:12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" 
+                    src="https://open.spotify.com/embed/track/0Jm6qs9Hacb4A9Dm65oFRf?utm_source=generator" 
+                    width="100%" 
+                    height="152" 
+                    frameBorder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+                </iframe>
+            </div>
+
+            <!-- Seção da Poesia -->
+            <div class="poem-font text-2xl md:text-3xl text-pink-700 leading-relaxed mb-10 px-2 drop-shadow-sm">
+                <p class="font-bold mb-4 text-3xl">nós</p>
+                <p>que nosso amor,</p>
+                <p>não seja somente infinito</p>
+                <p>como o universo;</p>
+                <p>mas que ele seja</p>
+                <p>inacabável como as</p>
+                <p class="mb-4">estrelas no céu;</p>
+                
+                <p>a cada estrela que morre</p>
+                <p>no céu;</p>
+                <p>mais quatro estrelas</p>
+                <p class="mb-4">nascem;</p>
+                
+                <p>então seria;</p>
+                <p>mais quatro chances para</p>
+                <p>te amar mais uma vez.</p>
+            </div>
+
+            <!-- Botão Pulsante -->
+            <button id="surpriseBtn" class="btn-pulse bg-gradient-to-r from-pink-400 to-pink-500 text-white poem-font text-2xl px-8 py-3 rounded-full font-bold shadow-lg hover:from-pink-500 hover:to-pink-600 transition-all duration-300 transform hover:-translate-y-1">
+                Para você... ✨
+            </button>
+            
+        </div>
+    </main>
+
+    <!-- Modal (Caixa de Mensagem Personalizada no lugar do alert) -->
+    <div id="customModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center transform scale-90 transition-transform duration-300 relative border-2 border-pink-200">
+            <!-- Ícone flutuante -->
+            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-5xl animate-bounce">
+                💝
+            </div>
+            
+            <h2 class="poem-font text-4xl text-pink-600 mb-4 mt-4 font-bold">Surpresa!</h2>
+            <p class="text-xl text-gray-700 mb-6 font-medium">Você é o amor da minha vida! ❤️</p>
+            
+            <button id="closeModalBtn" class="bg-pink-100 text-pink-600 hover:bg-pink-200 font-semibold py-2 px-6 rounded-full transition-colors duration-300">
+                Eu também te amo!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Array de emojis ou símbolos para cair
+        const heartSymbols = ['❤️', '💖', '💕', '🌸', '✨'];
+
+        // Função para criar um único coração caindo
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Escolhe um símbolo aleatório
+            heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            
+            // Posição horizontal aleatória (de 0 a 100% da largura da tela)
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Duração da queda aleatória (entre 4 e 8 segundos) para não caírem todos juntos
+            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            
+            // Tamanho aleatório (entre 1rem e 2rem)
+            heart.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+            
+            document.getElementById('heart-container').appendChild(heart);
+            
+            // Remove o coração do DOM depois que a animação termina (8s max)
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Cria corações continuamente (um a cada 400ms)
+        setInterval(createHeart, 400);
+
+        // Lógica do Modal e Explosão de Corações
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        const customModal = document.getElementById('customModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalContent = customModal.querySelector('div');
+
+        surpriseBtn.addEventListener('click', () => {
+            // Explosão de corações extras!
+            for (let i = 0; i < 40; i++) {
+                setTimeout(createHeart, i * 50); // Cria 40 corações rapidinho
+            }
+
+            // Mostra o modal suavemente
+            customModal.classList.remove('hidden');
+            // Pequeno delay para a transição do Tailwind funcionar
+            setTimeout(() => {
+                customModal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-90');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        });
+
+        // Fechar o modal
+        closeModalBtn.addEventListener('click', () => {
+            customModal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-90');
+            
+            // Aguarda a transição terminar para esconder (300ms)
+            setTimeout(() => {
+                customModal.classList.add('hidden');
+            }, 300);
+        });
+    </script>
+</body>
+</html>
